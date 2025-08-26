@@ -1,7 +1,33 @@
-import { KpiCards } from "../components/KpiCards";
-import { RecentTools } from "../components/RecentTools";
+import { useEffect } from "react";
+
+import { KpiCards } from "../components/dashboard/KpiCards";
+import { RecentTools } from "../components/dashboard/RecentTools";
+import { useAnalytics } from "../hooks/useAnalytics";
+import { useTools } from "../hooks/useTools";
 
 export const DashboardPage = () => {
+  const {
+    analytics,
+    loading: analyticsLoading,
+    error: analyticsError,
+    listAnalytics,
+  } = useAnalytics();
+
+  const {
+    tools,
+    loading: toolsLoading,
+    error: toolsError,
+    listTools,
+  } = useTools();
+
+  useEffect(() => {
+    listAnalytics();
+    listTools();
+  }, [listAnalytics, listTools]);
+
+  console.log("analytics", analytics);
+  console.log("tools", tools);
+
   return (
     <div>
       {/* Title & Description */}
@@ -12,9 +38,13 @@ export const DashboardPage = () => {
         </p>
       </div>
       {/* KPI Cards */}
-      <KpiCards />
+      <KpiCards
+        analytics={analytics}
+        loading={analyticsLoading}
+        error={analyticsError}
+      />
       {/* Recent tools list */}
-      <RecentTools />
+      <RecentTools tools={tools} loading={toolsLoading} error={toolsError} />
     </div>
   );
 };
