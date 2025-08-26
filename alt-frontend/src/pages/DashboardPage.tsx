@@ -25,9 +25,6 @@ export const DashboardPage = () => {
     listTools();
   }, [listAnalytics, listTools]);
 
-  console.log("analytics", analytics);
-  console.log("tools", tools);
-
   return (
     <div>
       {/* Title & Description */}
