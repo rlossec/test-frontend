@@ -13,6 +13,10 @@ export const KpiCards = ({
   loading: boolean;
   error: string | null;
 }) => {
+  /* Temporary data */
+  const departmentsCount = 8;
+  const activeToolsCount = 147;
+
   return (
     <div>
       <h2 className="text-lg font-bold">KPI Cards</h2>
@@ -21,15 +25,37 @@ export const KpiCards = ({
       {error && <p>Error: {error}</p>}
 
       {/* responsive Card : 1 Card on a row mobile, 2 Cards on a row tablet, 3 Cards on a row desktop */}
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
         {/* Budget Card */}
-        <BudgetCard />
+        {analytics?.budget_overview ? (
+          <BudgetCard
+            budgetAnalytics={analytics?.budget_overview}
+            budgetChange={analytics?.kpi_trends.budget_change}
+          />
+        ) : null}
+
         {/* Active Tools Card */}
-        <ActiveToolsCard />
+        {analytics?.kpi_trends.tools_change ? (
+          <ActiveToolsCard
+            activeToolsCount={activeToolsCount}
+            activeToolsCountChange={analytics?.kpi_trends.tools_change}
+          />
+        ) : null}
         {/* Departments Card */}
-        <DepartmentsCard />
+        {analytics?.kpi_trends.departments_change ? (
+          <DepartmentsCard
+            departmentsCount={departmentsCount}
+            departmentsCountChange={analytics?.kpi_trends.departments_change}
+          />
+        ) : null}
         {/* Cost User Card */}
-        <CostUserCard />
+        {analytics?.cost_analytics &&
+        analytics?.kpi_trends.cost_per_user_change ? (
+          <CostUserCard
+            costPerUser={analytics?.cost_analytics.cost_per_user}
+            costPerUserChange={analytics?.kpi_trends.cost_per_user_change}
+          />
+        ) : null}
       </div>
     </div>
   );

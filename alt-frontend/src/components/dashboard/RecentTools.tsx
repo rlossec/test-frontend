@@ -9,5 +9,9 @@ export const RecentTools = ({
   loading: boolean;
   error: string | null;
 }) => {
-  return <div>RecentTools</div>;
+  return (
+    <div>
+      <h2 className="text-lg font-bold">Recent Tools</h2>
+    </div>
+  );
 };
