@@ -4,7 +4,7 @@ import { api } from "../utils/api";
 import type { Analytics } from "../types/analytics/analytics";
 
 export const useAnalytics = () => {
-  const [analytics, setAnalytics] = useState<Analytics[]>([]);
+  const [analytics, setAnalytics] = useState<Analytics | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
