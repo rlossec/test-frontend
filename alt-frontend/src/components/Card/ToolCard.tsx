@@ -26,8 +26,20 @@ export const ToolCard = ({ tool }: { tool: Tool }) => {
     });
   };
 
+  // TODO: Add modal for view details and edit
+  const handleViewDetails = () => {
+    console.log("view details", tool.id);
+  };
+  const handleEdit = () => {
+    console.log("edit", tool.id);
+  };
+
+  // TODO: Add API call to toggle tool status
+  const handleToggle = () => {
+    console.log("toggle", tool.id);
+  };
+
   return (
-    // tailwind card
     <div className="bg-background  rounded-lg shadow-md p-4 ">
       {/* Tool Title section */}
       <div className="flex justify-between items-start">
@@ -40,8 +52,16 @@ export const ToolCard = ({ tool }: { tool: Tool }) => {
         </div>
         {/* Quick actions */}
         <div className="flex gap-2">
-          <IconButton icon={<EyeIcon />} ariaLabel="View details" />
-          <IconButton icon={<PencilIcon />} ariaLabel="Edit" />
+          <IconButton
+            icon={<EyeIcon />}
+            ariaLabel="View details"
+            onClick={handleViewDetails}
+          />
+          <IconButton
+            icon={<PencilIcon />}
+            ariaLabel="Edit"
+            onClick={handleEdit}
+          />
           {tool.website_url ? (
             <IconButton
               variant="ghost"
@@ -70,6 +90,13 @@ export const ToolCard = ({ tool }: { tool: Tool }) => {
           <Badge>{tool.monthly_cost}€/month</Badge>
           <Badge>Updated: {formatDate(tool.updated_at)}</Badge>
           <Badge>Dpt: {tool.owner_department}</Badge>
+        </div>
+        <div className="flex gap-2">
+          <Toggle
+            label={tool.status === "active" ? "Active" : "Inactive"}
+            value={tool.status === "active"}
+            onChange={handleToggle}
+          />
         </div>
       </div>
     </div>

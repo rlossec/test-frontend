@@ -9,6 +9,10 @@ export const ToolsPage = () => {
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
+  const handleAddTool = () => {
+    console.log("Add Tool");
+  };
+
   // TODO: Catalogue complet
   //Tous les outils du JSON (15+) avec:
   //- Grid cards
@@ -38,20 +42,28 @@ export const ToolsPage = () => {
             label="Add Tool"
             variant="solid"
             ariaLabel="Add Tool"
-            onClick={() => {
-              console.log("Add Tool");
-            }}
+            onClick={handleAddTool}
             className="bg-success text-background"
           />
         </div>
       </div>
 
+      {/* Filters */}
+      <div className="flex justify-between items-center my-8">
+        {/* Departments */}
+        {/* Status */}
+        {/* Cost Range : Slider */}
+        {/* Category */}
+      </div>
+
       {/* Tools List */}
-      <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {tools.map((tool) => (
-          <ToolCard key={tool.id} tool={tool} />
-        ))}
-      </ul>
+      <div className="flex flex-col gap-4">
+        <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {tools.map((tool) => (
+            <ToolCard key={tool.id} tool={tool} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
