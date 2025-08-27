@@ -1,5 +1,5 @@
 import { ToolCard } from "../components/Card/ToolCard";
-import { Button } from "../components/common/base/buttons/Button";
+import { IconButton } from "../components/common/base/buttons/IconButton";
 import { useTools } from "../hooks/useTools";
 import { PlusIcon } from "../icons/actions/PlusIcon";
 
@@ -30,13 +30,19 @@ export const ToolsPage = () => {
   return (
     <div>
       {/* Title */}
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center my-8">
         <h1 className="text-2xl font-bold text-text-light">Tools Catalogue</h1>
         <div className="flex items-center gap-2">
-          <Button variant="outline" size="sm">
-            <PlusIcon className="w-4 h-4" />
-            <p className="text-sm">Add Tool</p>
-          </Button>
+          <IconButton
+            icon={<PlusIcon />}
+            label="Add Tool"
+            variant="solid"
+            ariaLabel="Add Tool"
+            onClick={() => {
+              console.log("Add Tool");
+            }}
+            className="bg-success text-background"
+          />
         </div>
       </div>
 

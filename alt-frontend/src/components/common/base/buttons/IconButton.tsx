@@ -1,41 +1,49 @@
 import React from "react";
+import type { ButtonSize, ButtonVariant } from "./Button";
 
-export type ButtonVariant = "solid" | "outline" | "ghost";
-export type ButtonSize = "sm" | "md" | "lg";
+type LabelPosition = "left" | "right";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface IconButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  icon: React.ReactNode;
+  label?: string;
+  ariaLabel?: string;
+  labelPosition?: LabelPosition;
   color?: string;
   variant?: ButtonVariant;
   size?: ButtonSize;
   className?: string;
 }
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+export const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   (
     {
+      icon,
+      label,
+      ariaLabel,
+      labelPosition = "right",
       color = "primary",
-      variant = "solid",
+      variant = "ghost",
       size = "md",
       disabled = false,
       className = "",
-      children,
       type = "button",
       ...props
     },
     ref
   ) => {
-    // Styles de base communs à tous les boutons
+    // Base styles
     const baseStyles =
       "inline-flex items-center justify-center font-medium rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed";
 
-    // Styles de taille
+    // Taille
     const sizeStyles = {
-      sm: "py-1.5 px-3 text-sm min-h-[32px]",
-      md: "py-2 px-4 text-base min-h-[40px]",
-      lg: "py-2.5 px-5 text-lg min-h-[48px]",
+      sm: "px-2 py-1 text-sm gap-1 min-h-[32px]",
+      md: "px-3 py-2 text-base gap-2 min-h-[40px]",
+      lg: "px-4 py-2.5 text-lg gap-3 min-h-[48px]",
     };
 
-    // Styles de variante
+    // Variantes
     const variantStyles = {
       solid: `bg-${color} text-background hover:bg-${color}-dark`,
       outline: `border border-${color} text-${color} hover:bg-${color} hover:text-background`,
@@ -46,6 +54,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         type={type}
+        aria-label={!label ? ariaLabel : undefined}
         className={`
           ${baseStyles}
           ${sizeStyles[size]}
@@ -55,10 +64,12 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         {...props}
       >
-        {children}
+        {label && labelPosition === "left" && <span>{label}</span>}
+        {icon}
+        {label && labelPosition === "right" && <span>{label}</span>}
       </button>
     );
   }
 );
 
-Button.displayName = "Button";
+IconButton.displayName = "IconButton";

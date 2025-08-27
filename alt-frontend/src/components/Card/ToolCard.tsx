@@ -1,6 +1,15 @@
+import { useState } from "react";
 import { PencilIcon } from "../../icons/actions/PencilIcon";
 import { EyeIcon } from "../../icons/media-player/EyeIcon";
+import { ExternalLinkIcon } from "../../icons/navigation/ExternalLinkIcon";
+
 import type { Tool } from "../../types/tool";
+
+import { Badge } from "../common/base/Badge";
+import { IconButton } from "../common/base/buttons/IconButton";
+
+import { Toggle } from "../common/forms/simple/Toggle";
+import { ToolIcon } from "../../icons/others/ToolIcon";
 
 // TODO:
 // - Add Tool icon, name, description complète
@@ -9,50 +18,101 @@ import type { Tool } from "../../types/tool";
 // - Quick actions (Edit, View details, Disable/Enable)
 
 export const ToolCard = ({ tool }: { tool: Tool }) => {
+  const formatDate = (date: string) => {
+    return new Date(date).toLocaleDateString("fr-FR", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  };
+
   return (
     // tailwind card
     <div className="bg-background  rounded-lg shadow-md p-4 ">
       {/* Tool Title section */}
-      <div className="flex items-center gap-6 p-4">
-        <div className="float-left">
-          <img src={tool.icon_url} alt={tool.name} className="w-10 h-10" />
+      <div className="flex justify-between items-start">
+        <div className="flex items-center gap-4">
+          <ToolIconProtected src={tool.icon_url} alt={tool.name} />
+          <div>
+            <h2 className="text-lg font-semibold">{tool.name}</h2>
+            <Badge>{tool.category}</Badge>
+          </div>
         </div>
-        <h2 className="text-lg font-bold">{tool.name}</h2>
+        {/* Quick actions */}
+        <div className="flex gap-2">
+          <IconButton icon={<EyeIcon />} ariaLabel="View details" />
+          <IconButton icon={<PencilIcon />} ariaLabel="Edit" />
+          {tool.website_url ? (
+            <IconButton
+              variant="ghost"
+              icon={<ExternalLinkIcon />}
+              ariaLabel="Open website"
+              onClick={() => {
+                window.open(tool.website_url, "_blank");
+              }}
+            />
+          ) : null}
+        </div>
       </div>
 
       {/* Tool Info section */}
       <div className="flex items-center gap-2 p-4">
         {/* Tool description */}
         <p className="text-sm text-gray-500">{tool.description}</p>
-
-        {/* Tool website */}
-        <p className="text-sm text-gray-500">
-          {tool.website_url ? (
-            <a
-              href={tool.website_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {tool.website_url}
-            </a>
-          ) : (
-            "No url provided"
-          )}
-        </p>
       </div>
 
       {/* Badges section */}
-      <div className="flex flex-col justify-start gap-2">
-        <p>Category: {tool.category}</p>
-        <p>Status: {tool.status}</p>
-        <p>Active users: {tool.active_users_count}</p>
-      </div>
-      {/* Quick actions section on the top right with Icons button*/}
-      <div className="flex items-center gap-2">
-        <PencilIcon className="w-4 h-4" />
-        <EyeIcon className="w-4 h-4" />
-        {/* Toggle button to disable/enable the tool */}
+      <div className="flex gap-2">
+        {/* 2 rows of 3 badges */}
+        <div className="grid grid-cols-2 gap-2">
+          <Badge>{tool.active_users_count} users</Badge>
+
+          <Badge>{tool.monthly_cost}€/month</Badge>
+          <Badge>Updated: {formatDate(tool.updated_at)}</Badge>
+          <Badge>Dpt: {tool.owner_department}</Badge>
+        </div>
       </div>
     </div>
+  );
+};
+
+interface ToolIconProtectedProps {
+  src?: string;
+  alt: string;
+  size?: number;
+  fallback?: React.ReactNode;
+  className?: string;
+}
+
+const ToolIconProtected: React.FC<ToolIconProtectedProps> = ({
+  src,
+  alt,
+  size = 40,
+  fallback,
+  className = "",
+}) => {
+  const [error, setError] = useState(false);
+
+  if (!src || error) {
+    // Si pas d’URL ou erreur → fallback
+    return (
+      <div
+        className={`flex items-center justify-center rounded bg-gray-200 text-gray-600 ${className}`}
+        style={{ width: size, height: size }}
+      >
+        {fallback ?? <ToolIcon size={size * 0.6} />}
+      </div>
+    );
+  }
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      width={size}
+      height={size}
+      className={`rounded object-contain ${className}`}
+      onError={() => setError(true)}
+    />
   );
 };

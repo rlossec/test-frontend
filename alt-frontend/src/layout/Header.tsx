@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 export const Header = () => {
   const [open, setOpen] = useState(false);
   return (
-    <header className="flex md:flex-row flex-col justify-between items-center p-4">
+    <header className="flex md:flex-row flex-col justify-between items-center p-4 border-b-2 border-border">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-2">
