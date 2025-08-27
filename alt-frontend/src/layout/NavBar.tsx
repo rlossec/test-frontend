@@ -6,7 +6,7 @@ export const NavBar = () => {
       <div className="flex items-center gap-4">
         <Link to="/">
           <div className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 flex items-center justify-center">
               <img
                 src={"/src/assets/react.svg"}
                 alt="logo TechCorp"
@@ -17,10 +17,24 @@ export const NavBar = () => {
           </div>
         </Link>
         <div className="flex items-center gap-4 ml-10">
-          <Link to="/">Dashboard</Link>
-          <Link to="/analytics">Analytics</Link>
-          <Link to="/tools">Tools</Link>
-          <Link to="/settings">Settings</Link>
+          <Link to="/" className="text-text-light active:text-text-dark">
+            Dashboard
+          </Link>
+          <Link
+            to="/analytics"
+            className="text-text-light active:text-text-dark"
+          >
+            Analytics
+          </Link>
+          <Link to="/tools" className="text-text-light active:text-text-dark">
+            Tools
+          </Link>
+          <Link
+            to="/settings"
+            className="text-text-light active:text-text-dark"
+          >
+            Settings
+          </Link>
         </div>
       </div>
     </nav>
