@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { PencilIcon } from "../../icons/actions/PencilIcon";
-import { EyeIcon } from "../../icons/media-player/EyeIcon";
-import { ExternalLinkIcon } from "../../icons/navigation/ExternalLinkIcon";
+import { useNavigate } from "react-router-dom";
 
 import type { Tool } from "../../types/tool";
 
+import { formatDate } from "../../utils/format";
+
 import { Badge } from "../common/base/Badge";
 import { IconButton } from "../common/base/buttons/IconButton";
-
 import { Toggle } from "../common/forms/simple/Toggle";
+
 import { ToolIcon } from "../../icons/others/ToolIcon";
+import { PencilIcon } from "../../icons/actions/PencilIcon";
+import { EyeIcon } from "../../icons/media-player/EyeIcon";
+import { ExternalLinkIcon } from "../../icons/navigation/ExternalLinkIcon";
 
 // TODO:
 // - Add Tool icon, name, description complète
@@ -18,20 +21,14 @@ import { ToolIcon } from "../../icons/others/ToolIcon";
 // - Quick actions (Edit, View details, Disable/Enable)
 
 export const ToolCard = ({ tool }: { tool: Tool }) => {
-  const formatDate = (date: string) => {
-    return new Date(date).toLocaleDateString("fr-FR", {
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-    });
-  };
+  const navigate = useNavigate();
 
   // TODO: Add modal for view details and edit
   const handleViewDetails = () => {
-    console.log("view details", tool.id);
+    navigate(`/tools/${tool.id}`);
   };
   const handleEdit = () => {
-    console.log("edit", tool.id);
+    navigate(`/tools/${tool.id}/edit`);
   };
 
   // TODO: Add API call to toggle tool status

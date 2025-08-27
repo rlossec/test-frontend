@@ -1,16 +1,17 @@
-import { ToolCard } from "../components/Card/ToolCard";
-import { IconButton } from "../components/common/base/buttons/IconButton";
-import { useTools } from "../hooks/useTools";
-import { PlusIcon } from "../icons/actions/PlusIcon";
+import { useNavigate } from "react-router-dom";
+import { ToolCard } from "../../components/Card/ToolCard";
+import { IconButton } from "../../components/common/base/buttons/IconButton";
+import { useTools } from "../../hooks/useTools";
+import { PlusIcon } from "../../icons/actions/PlusIcon";
 
 export const ToolsPage = () => {
   const { tools, loading, error } = useTools();
-
+  const navigate = useNavigate();
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
   const handleAddTool = () => {
-    console.log("Add Tool");
+    navigate("/tools/add");
   };
 
   // TODO: Catalogue complet
