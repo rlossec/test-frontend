@@ -1,3 +1,5 @@
+import type { DepartmentName } from "../config/department";
+
 export interface Tool {
   id: number;
   name: string;
@@ -14,3 +16,12 @@ export interface Tool {
   created_at: string;
   updated_at: string;
 }
+
+export type DepartmentFilter = DepartmentName | "All";
+
+export type ToolsFilters = {
+  department: DepartmentFilter;
+  status: "active" | "unused" | "expiring" | "All";
+  cost: [number, number];
+  category: string;
+};

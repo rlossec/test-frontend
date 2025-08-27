@@ -1,12 +1,24 @@
 import { useNavigate } from "react-router-dom";
-import { ToolCard } from "../../components/Card/ToolCard";
+import { ToolCard } from "../../components/tools/ToolCard";
 import { IconButton } from "../../components/common/base/buttons/IconButton";
 import { useTools } from "../../hooks/useTools";
 import { PlusIcon } from "../../icons/actions/PlusIcon";
+import { useState } from "react";
+
+import { DEPARTMENTS, type DepartmentName } from "../../config/department";
+import { ChipsFilter } from "../../components/common/forms/advanced/ChipsFilter";
 
 export const ToolsPage = () => {
   const { tools, loading, error } = useTools();
   const navigate = useNavigate();
+
+  const [selectedDepartments, setSelectedDepartments] = useState<
+    DepartmentName[]
+  >([]);
+  // const [selectedStatus, setSelectedStatus] = useState<StatusFilter>("All");
+  // const [selectedCost, setSelectedCost] = useState<[number, number]>([0, 1000]);
+  // const [selectedCategory, setSelectedCategory] = useState<string>("All");
+
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
@@ -19,6 +31,23 @@ export const ToolsPage = () => {
   //- Grid cards
 
   //  Filtres
+
+  const handleDepartmentFilterChange = (departments: DepartmentName[]) => {
+    setSelectedDepartments(departments);
+  };
+
+  // const handleStatusFilterChange = (value: StatusFilter) => {
+  //   setSelectedStatus(value);
+  // };
+
+  // const handleCostFilterChange = (value: [number, number]) => {
+  //   setSelectedCost(value);
+  // };
+
+  // const handleCategoryFilterChange = (value: string) => {
+  //   setSelectedCategory(value);
+  // };
+
   //  Search by :
   //  - Department: All, Engineering, Marketing, Design, etc.
   //  - Status: Active, Expiring, Unused
@@ -51,10 +80,12 @@ export const ToolsPage = () => {
 
       {/* Filters */}
       <div className="flex justify-between items-center my-8">
-        {/* Departments */}
-        {/* Status */}
-        {/* Cost Range : Slider */}
-        {/* Category */}
+        <ChipsFilter
+          label="Departments"
+          options={DEPARTMENTS}
+          selectedOptions={selectedDepartments}
+          onChange={handleDepartmentFilterChange}
+        />
       </div>
 
       {/* Tools List */}
