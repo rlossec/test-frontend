@@ -1,6 +1,6 @@
 import { NavBar } from "./NavBar";
 import { SearchBar } from "./SearchBar";
-import { Notifications } from "./Notifications";
+import { NotificationsCounter } from "./NotificationsCounter";
 import { UserDropdown } from "./UserDropdown";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -15,7 +15,7 @@ export const Header = () => {
         {/* ThemeToggle */}
         <ThemeToggle />
         {/* Notifications avec compteur */}
-        <Notifications />
+        <NotificationsCounter />
         {/* User avatar + dropdown menu */}
         <UserDropdown />
       </div>
