@@ -3,6 +3,7 @@ import { SearchBar } from "./SearchBar";
 import { NotificationsCounter } from "./NotificationsCounter";
 import { UserDropdown } from "./UserDropdown";
 import { ThemeToggle } from "./ThemeToggle";
+import { SettingsIcon } from "../icons/user-interface/SettingsIcon";
 
 export const Header = () => {
   return (
@@ -17,6 +18,7 @@ export const Header = () => {
         {/* Notifications avec compteur */}
         <NotificationsCounter />
         {/* User avatar + dropdown menu */}
+        <SettingsIcon />
         <UserDropdown />
       </div>
     </header>
