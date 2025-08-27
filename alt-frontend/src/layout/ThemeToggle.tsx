@@ -6,12 +6,12 @@ export function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
 
   return (
-    <button
-      onClick={toggleTheme}
-      className="p-2 rounded-lg border border-light-border 
-                 bg-background-alt text-text"
-    >
-      {theme === "dark" ? <MoonIcon /> : <SunIcon />}
+    <button onClick={toggleTheme} className="p-2 text-text-light">
+      {theme === "dark" ? (
+        <SunIcon className="text-yellow-500" />
+      ) : (
+        <MoonIcon className="text-gray-500" />
+      )}
     </button>
   );
 }

@@ -20,7 +20,7 @@
   --color-background: #ffffff;
   --color-background-alt: #f3f4f6;
   --color-text: #1f2937;
-  --color-text-light: #4b5563; /* Rendu plus sombre pour une meilleure lisibilité sur fond clair */
+  --color-text-light: #4b5563;
   --color-border: #e5e7eb;
 }
 

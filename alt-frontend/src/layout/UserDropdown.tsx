@@ -14,13 +14,19 @@ export const UserDropdown = () => {
       />
       <DropdownMenu trigger={<ChevronDownIcon className="size-4" />}>
         <DropdownMenuItem>
-          <Link to="/profile">Profile</Link>
+          <Link to="/profile" className="text-text-light">
+            Profile
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link to="/user/settings">User Settings</Link>
+          <Link to="/user/settings" className="text-text-light">
+            User Settings
+          </Link>
         </DropdownMenuItem>
         <DropdownMenuItem>
-          <Link to="/logout">Logout</Link>
+          <Link to="/logout" className="text-text-light">
+            Logout
+          </Link>
         </DropdownMenuItem>
       </DropdownMenu>
     </div>

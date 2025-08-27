@@ -10,7 +10,7 @@ export const NotificationsCounter = () => {
   };
 
   return (
-    <div>
+    <div className="text-text-light">
       <div className="relative">
         <BellIcon onClick={handleClick} />
         {notifications.length > 0 && (
