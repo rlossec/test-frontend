@@ -1,4 +1,5 @@
 import type { DepartmentName } from "../config/department";
+import type { ToolStatus } from "../config/tool";
 
 export interface Tool {
   id: number;
@@ -18,6 +19,8 @@ export interface Tool {
 }
 
 export type DepartmentFilter = DepartmentName | "All";
+
+export type StatusFilter = ToolStatus | "All";
 
 export type ToolsFilters = {
   department: DepartmentFilter;

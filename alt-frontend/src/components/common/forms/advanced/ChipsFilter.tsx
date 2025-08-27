@@ -1,7 +1,7 @@
 import { Chip } from "../../base/Chip";
 
 interface ChipsFilterProps<T> {
-  label: string;
+  label?: string;
   options: T[];
   selectedOptions: T[];
   onChange: (options: T[]) => void;
