@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { CostAnalytics } from "../components/analytics/CostAnalytics";
 import { InsightsDashboard } from "../components/analytics/InsightsDashboard";
 import { UsageAnalytics } from "../components/analytics/UsageAnalytics";
@@ -16,24 +17,30 @@ export const AnalyticsPage = () => {
   } = useAnalytics();
   const { tools, recentTools, loading, error, listTools, listRecentTools } =
     useTools();
-  // const {
-  //   users,
-  //   loading: usersLoading,
-  //   error: usersError,
-  //   listUsers,
-  // } = useUsers();
-  // const {
-  //   userTools,
-  //   loading: userToolsLoading,
-  //   error: userToolsError,
-  //   listUserTools,
-  // } = useUserTools();
-  // const {
-  //   departments,
-  //   loading: departmentsLoading,
-  //   error: departmentsError,
-  //   listDepartments,
-  // } = useDepartments();
+  const {
+    users,
+    loading: usersLoading,
+    error: usersError,
+    listUsers,
+  } = useUsers();
+  const {
+    userTools,
+    loading: userToolsLoading,
+    error: userToolsError,
+    listUserTools,
+  } = useUserTools();
+  const {
+    departments,
+    loading: departmentsLoading,
+    error: departmentsError,
+    listDepartments,
+  } = useDepartments();
+
+  useEffect(() => {
+    listUsers();
+  }, [listUsers]);
+
+  const activeUsers = users.filter((user) => user.active);
 
   return (
     <div className="p-6 grid gap-8">
@@ -43,7 +50,12 @@ export const AnalyticsPage = () => {
         <div>Loading...</div>
       )}
 
-      <UsageAnalytics />
+      <UsageAnalytics
+        tools={tools}
+        activeUsers={activeUsers}
+        userTools={userTools}
+        departments={departments}
+      />
       <InsightsDashboard />
     </div>
   );
