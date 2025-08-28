@@ -93,3 +93,19 @@ _Évolutions possibles pour une app SaaS Tools complète_
 
 
 ### Choix
+
+Oublie manquant prioritaires :
+- Gestion des erreurs et chargement minimales. Il faudrait coder un cadre unifié.
+- Page View/Edit et Add Tool : placeholder uniquement -> Endpoints et Liaisons
+- ToolsPage : couleurs pastilles car non visibles
+- Search adaptée : trop couteux en temps pour ce que j'avais de dispo
+- Analytics : Chart
+
+Pour avoir des données fictives :
+- Une date fictive du jour dans le fichier de config.
+
+Pas prioritaire:
+- Dashboard : filtrer sur updated_at du dernier mois.
+- Dashboard : fonction dans utils pour formatter les nombres
+- ToolsPage : Toggle relier à un endpoint 
+- ToolsPage : Mise en forme Filtres
