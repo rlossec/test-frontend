@@ -10,7 +10,7 @@ export interface Tool {
   monthly_cost: number;
   previous_month_cost: number;
   owner_department: string;
-  status: "active" | "unused" | "expiring";
+  status: ToolStatus;
   website_url: string;
   active_users_count: number;
   icon_url: string;
