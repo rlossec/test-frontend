@@ -9,7 +9,7 @@ export const CostAnalytics = ({
   analytics,
   tools,
 }: {
-  analytics: Analytics[];
+  analytics: Analytics;
   tools: Tool[];
 }) => {
   // TODO :
@@ -30,10 +30,10 @@ export const CostAnalytics = ({
   //     - Filters cohérents avec Tools page
 
   return (
-    <section className="grid gap-6">
+    <section>
       <h2 className="text-xl font-semibold">💰 Cost Analytics</h2>
-      <div className="">
-        <MonthlySpendEvolution analytics={analytics} tools={tools} />
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <MonthlySpendEvolution analytics={analytics} />
         <DepartmentCostBreakdown tools={tools} />
         <TopExpensiveTools tools={tools} />
         <BudgetProgress analytics={analytics} />

@@ -5,6 +5,7 @@ import type { Tool } from "../types/tool";
 
 export const useTools = () => {
   const [tools, setTools] = useState<Tool[]>([]);
+  const [recentTools, setRecentTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -30,7 +31,7 @@ export const useTools = () => {
       const response = await api.get(
         "/tools?_sort=updated_at&_order=desc&_limit=8"
       );
-      setTools(response.data);
+      setRecentTools(response.data);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
@@ -43,5 +44,5 @@ export const useTools = () => {
     listRecentTools();
   }, [listTools, listRecentTools]);
 
-  return { tools, loading, error, listTools, listRecentTools };
+  return { tools, recentTools, loading, error, listTools, listRecentTools };
 };

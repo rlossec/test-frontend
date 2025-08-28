@@ -22,9 +22,27 @@ export const useUsers = () => {
     }
   }, []);
 
+  const listActiveUsers = useCallback(async () => {
+    const response = await api.get("/users?active=true");
+    return response.data;
+  }, []);
+
+  const listUsersByDepartment = useCallback(async (departmentId: number) => {
+    const response = await api.get(`/users?department_id=${departmentId}`);
+    return response.data;
+  }, []);
+
   useEffect(() => {
     listUsers();
-  }, [listUsers]);
+    listActiveUsers();
+  }, [listUsers, listActiveUsers]);
 
-  return { users, loading, error, listUsers };
+  return {
+    users,
+    loading,
+    error,
+    listUsers,
+    listActiveUsers,
+    listUsersByDepartment,
+  };
 };

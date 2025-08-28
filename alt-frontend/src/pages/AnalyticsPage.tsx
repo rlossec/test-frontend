@@ -16,28 +16,33 @@ export const AnalyticsPage = () => {
   } = useAnalytics();
   const { tools, recentTools, loading, error, listTools, listRecentTools } =
     useTools();
-  const {
-    users,
-    loading: usersLoading,
-    error: usersError,
-    listUsers,
-  } = useUsers();
-  const {
-    userTools,
-    loading: userToolsLoading,
-    error: userToolsError,
-    listUserTools,
-  } = useUserTools();
-  const {
-    departments,
-    loading: departmentsLoading,
-    error: departmentsError,
-    listDepartments,
-  } = useDepartments();
+  // const {
+  //   users,
+  //   loading: usersLoading,
+  //   error: usersError,
+  //   listUsers,
+  // } = useUsers();
+  // const {
+  //   userTools,
+  //   loading: userToolsLoading,
+  //   error: userToolsError,
+  //   listUserTools,
+  // } = useUserTools();
+  // const {
+  //   departments,
+  //   loading: departmentsLoading,
+  //   error: departmentsError,
+  //   listDepartments,
+  // } = useDepartments();
 
   return (
     <div className="p-6 grid gap-8">
-      <CostAnalytics analytics={analytics} tools={tools} />
+      {analytics && tools ? (
+        <CostAnalytics analytics={analytics} tools={tools} />
+      ) : (
+        <div>Loading...</div>
+      )}
+
       <UsageAnalytics />
       <InsightsDashboard />
     </div>
