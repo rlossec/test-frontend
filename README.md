@@ -109,3 +109,8 @@ Pas prioritaire:
 - Dashboard : fonction dans utils pour formatter les nombres
 - ToolsPage : Toggle relier à un endpoint 
 - ToolsPage : Mise en forme Filtres
+
+
+###
+
+Super important, faut appuyer sur la cloche et le compteur de notif apparait 👌
