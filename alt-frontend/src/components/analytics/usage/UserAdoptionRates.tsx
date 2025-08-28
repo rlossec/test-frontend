@@ -8,7 +8,8 @@ export const UserAdoptionRates = ({
   tools: Tool[];
   activeUsers: User[];
 }) => {
-  console.log("activeUsers count", activeUsers.length); // ok
+  // TODO :
+  //  Trends : missing previous month active users count
 
   const userAdoptionRates = tools.map((tool) => {
     return {

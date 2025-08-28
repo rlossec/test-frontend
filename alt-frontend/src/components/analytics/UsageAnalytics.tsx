@@ -28,18 +28,17 @@ export const UsageAnalytics = ({
   //   - Growth Trends: Timeline des nouveaux outils                  Timeline ?
   //       - Endpoint(s) : GET users/1/user_tools
 
+  console.log("departments", departments);
+  console.log("userTools", userTools);
+
   return (
     <section className="grid gap-6">
       <h2 className="text-xl font-semibold">📊 Usage Analytics</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <UserAdoptionRates tools={tools} activeUsers={activeUsers} />
-        <MostLeastUsedTools tools={tools} userTools={userTools} />
-        <DepartmentActivity
-          tools={tools}
-          userTools={userTools}
-          departments={departments}
-        />
-        <GrowthTrends tools={tools} userTools={userTools} />
+        <MostLeastUsedTools />
+        <DepartmentActivity />
+        <GrowthTrends />
       </div>
     </section>
   );

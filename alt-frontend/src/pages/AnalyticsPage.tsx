@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { CostAnalytics } from "../components/analytics/CostAnalytics";
 import { InsightsDashboard } from "../components/analytics/InsightsDashboard";
 import { UsageAnalytics } from "../components/analytics/UsageAnalytics";
@@ -9,38 +9,21 @@ import { useUsers } from "../hooks/useUsers";
 import { useUserTools } from "../hooks/useUserTools";
 
 export const AnalyticsPage = () => {
-  const {
-    analytics,
-    loading: analyticsLoading,
-    error: analyticsError,
-    listAnalytics,
-  } = useAnalytics();
-  const { tools, recentTools, loading, error, listTools, listRecentTools } =
-    useTools();
-  const {
-    users,
-    loading: usersLoading,
-    error: usersError,
-    listUsers,
-  } = useUsers();
-  const {
-    userTools,
-    loading: userToolsLoading,
-    error: userToolsError,
-    listUserTools,
-  } = useUserTools();
-  const {
-    departments,
-    loading: departmentsLoading,
-    error: departmentsError,
-    listDepartments,
-  } = useDepartments();
+  const { analytics, listAnalytics } = useAnalytics();
+  const { tools, listTools } = useTools();
+  const { users, listUsers } = useUsers();
+  const { userTools } = useUserTools();
+  const { departments } = useDepartments();
 
   useEffect(() => {
     listUsers();
-  }, [listUsers]);
+    listTools();
+    listAnalytics();
+  }, [listUsers, listTools, listAnalytics]);
 
   const activeUsers = users.filter((user) => user.active);
+
+  console.log("departments", departments);
 
   return (
     <div className="p-6 grid gap-8">
