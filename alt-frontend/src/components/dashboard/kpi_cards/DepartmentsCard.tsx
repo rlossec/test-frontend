@@ -1,3 +1,6 @@
+import { BuildingIcon } from "../../../icons/others/BuildingIcon";
+import { KpiCard } from "./KpiCard";
+
 export const DepartmentsCard = ({
   departmentsCount,
   departmentsCountChange,
@@ -6,10 +9,14 @@ export const DepartmentsCard = ({
   departmentsCountChange: string;
 }) => {
   return (
-    <div>
-      <h3>Departments</h3>
-      <p>{departmentsCount}</p>
-      <p>{departmentsCountChange}</p>
-    </div>
+    <KpiCard
+      title="Departments"
+      content={<p>{departmentsCount}</p>}
+      className="bg-gradient-to-r from-orange-400 to-red-500"
+      trend={departmentsCountChange}
+      icon={
+        <BuildingIcon className="bg-gradient-to-r from-orange-400 to-red-500" />
+      }
+    />
   );
 };

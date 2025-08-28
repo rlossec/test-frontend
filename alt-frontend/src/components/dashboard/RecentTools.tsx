@@ -1,7 +1,10 @@
+import { TOOLS_PER_PAGE } from "../../config/tool";
 import { PencilIcon } from "../../icons/actions/PencilIcon";
 import { TrashIcon } from "../../icons/actions/TrashIcon";
 import { EyeIcon } from "../../icons/media-player/EyeIcon";
+import { CalendarIcon } from "../../icons/user-interface/CalendarIcon";
 import type { Tool } from "../../types/tool";
+import { Paper } from "../common/base/Paper";
 
 import { DataTable, type Column } from "../common/data/DataTable";
 
@@ -44,13 +47,15 @@ export const RecentTools = ({
     },
   ];
   return (
-    <div>
+    <Paper>
       {loading && <div>Loading...</div>}
       {error && <div>Error: {error}</div>}
       {/* Title */}
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between p-4 mb-4">
         <h2 className="text-lg font-bold">Recent Tools</h2>
-        <p> Last 30 days</p>
+        <p className="flex items-center gap-2">
+          Active month <CalendarIcon />
+        </p>
       </div>
       {/* Content : Table */}
       <DataTable
@@ -58,8 +63,8 @@ export const RecentTools = ({
         data={tools}
         keyExtractor={(tool) => tool.id}
         actions={toolActions}
-        pagination={{ pageSize: 8 }}
+        pagination={{ pageSize: TOOLS_PER_PAGE }}
       />
-    </div>
+    </Paper>
   );
 };

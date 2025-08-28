@@ -19,8 +19,6 @@ export const KpiCards = ({
 
   return (
     <div>
-      <h2 className="text-lg font-bold">KPI Cards</h2>
-
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
 

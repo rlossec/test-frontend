@@ -22,11 +22,19 @@ export const DashboardPage = () => {
 
   useEffect(() => {
     listAnalytics();
-    listTools();
+    // update this method to get the last 10 tools
+    // TODO : Active filter
+    listTools({
+      sortBy: "updated_at",
+      order: "desc",
+      // filters: {
+      //   updated_at: FICTIVE_DATE.toISOString(),
+      // },
+    });
   }, [listAnalytics, listTools]);
 
   return (
-    <div>
+    <div className="p-6 grid gap-8">
       {/* Title & Description */}
       <div className="flex flex-col gap-2 mb-6">
         <h1 className="text-2xl font-bold">Internal Tools Dashboard</h1>

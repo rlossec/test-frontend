@@ -1,3 +1,7 @@
+import { WrenchIcon } from "../../../icons/others/WrenchIcon";
+
+import { KpiCard } from "./KpiCard";
+
 export const ActiveToolsCard = ({
   activeToolsCount,
   activeToolsCountChange,
@@ -6,10 +10,14 @@ export const ActiveToolsCard = ({
   activeToolsCountChange: string;
 }) => {
   return (
-    <div>
-      <h3>Active Tools</h3>
-      <p>{activeToolsCount}</p>
-      <p>{activeToolsCountChange}</p>
-    </div>
+    <KpiCard
+      title="Active Tools"
+      content={<p>{activeToolsCount}</p>}
+      className="bg-gradient-to-r from-violet-400 to-purple-500"
+      trend={activeToolsCountChange}
+      icon={
+        <WrenchIcon className="bg-gradient-to-r from-violet-400 to-purple-500" />
+      }
+    />
   );
 };

@@ -1,4 +1,7 @@
+import { EuroIcon } from "../../../icons/others/EuroIcon";
 import type { BudgetOverview } from "../../../types/analytics/budget";
+
+import { KpiCard } from "./KpiCard";
 
 export const BudgetCard = ({
   budgetAnalytics,
@@ -8,13 +11,19 @@ export const BudgetCard = ({
   budgetChange: string;
 }) => {
   return (
-    <div>
-      <h3>Monthly Budget</h3>
-      <p>
-        €{budgetAnalytics.current_month_total} / €
-        {budgetAnalytics.monthly_limit}
-      </p>
-      <p>{budgetChange}</p>
-    </div>
+    <KpiCard
+      title="Monthly Budget"
+      content={
+        <>
+          <p className="text-text">€{budgetAnalytics.current_month_total}</p>
+          <p className="text-text-light">/ €{budgetAnalytics.monthly_limit}</p>
+        </>
+      }
+      className="bg-gradient-to-r from-green-400 to-cyan-500"
+      trend={budgetChange}
+      icon={
+        <EuroIcon className="bg-gradient-to-r from-green-400 to-cyan-500" />
+      }
+    />
   );
 };

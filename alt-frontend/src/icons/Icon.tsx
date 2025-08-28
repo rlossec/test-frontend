@@ -1,14 +1,10 @@
 import type { HTMLAttributes } from "react";
 
-
-
 interface IconProps extends HTMLAttributes<SVGElement> {
   size?: number | string;
   strokeWidth?: number;
   fill?: boolean;
 }
-
-
 
 export const Icon = ({
   children,
@@ -18,8 +14,7 @@ export const Icon = ({
   fill = false,
   ...props
 }: IconProps) => {
-
-  const classes = [ fill ? "fill-current" : "fill-none", className]
+  const classes = [fill ? "fill-current" : "fill-none", className]
     .filter(Boolean)
     .join(" ");
 
