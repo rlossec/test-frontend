@@ -1,12 +1,13 @@
 import { useTools } from "../../../hooks/useTools";
+import { Paper } from "../../common/base/Paper";
 
 export const MostLeastUsedTools = () => {
   const { mostUsedTools, leastUsedTools } = useTools();
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
+    <Paper>
       <h3 className="text-md font-semibold">Most/Least Used Tools</h3>
       <div className="grid grid-cols-2 gap-4">
-        <div className="p-4 bg-white rounded-lg shadow-md">
+        <Paper className="bg-background-alt">
           <h4 className="text-sm font-semibold">Most Used Tools</h4>
           <ul>
             {mostUsedTools.map((tool) => (
@@ -15,8 +16,8 @@ export const MostLeastUsedTools = () => {
               </li>
             ))}
           </ul>
-        </div>
-        <div className="p-4 bg-white rounded-lg shadow-md">
+        </Paper>
+        <Paper className="bg-background-alt">
           <h4 className="text-sm font-semibold">Least Used Tools</h4>
           <ul>
             {leastUsedTools.map((tool) => (
@@ -25,8 +26,8 @@ export const MostLeastUsedTools = () => {
               </li>
             ))}
           </ul>
-        </div>
+        </Paper>
       </div>
-    </div>
+    </Paper>
   );
 };

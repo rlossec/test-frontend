@@ -1,4 +1,5 @@
 import type { Tool } from "../../../types/tool";
+import { Paper } from "../../common/base/Paper";
 
 export const DepartmentCostBreakdown = ({ tools }: { tools: Tool[] }) => {
   console.log("tools", tools);
@@ -13,7 +14,7 @@ export const DepartmentCostBreakdown = ({ tools }: { tools: Tool[] }) => {
   }, {} as Record<string, number>);
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
+    <Paper>
       <h3 className="text-md font-semibold">Department Cost Breakdown</h3>
       <ul>
         {Object.entries(departmentCosts).map(([department, cost]) => (
@@ -22,6 +23,6 @@ export const DepartmentCostBreakdown = ({ tools }: { tools: Tool[] }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </Paper>
   );
 };

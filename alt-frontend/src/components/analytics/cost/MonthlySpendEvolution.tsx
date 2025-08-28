@@ -1,4 +1,5 @@
 import type { Analytics } from "../../../types/analytics/analytics";
+import { Paper } from "../../common/base/Paper";
 
 export const MonthlySpendEvolution = ({
   analytics,
@@ -9,11 +10,11 @@ export const MonthlySpendEvolution = ({
   const currentMonth = analytics.budget_overview.current_month_total;
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
+    <Paper>
       <h3 className="text-md font-semibold">Monthly Spend Evolution</h3>
       <p>
         Previous Month: {previousMonth} - Current Month: {currentMonth}
       </p>
-    </div>
+    </Paper>
   );
 };

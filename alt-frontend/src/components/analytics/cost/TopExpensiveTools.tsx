@@ -1,4 +1,5 @@
 import type { Tool } from "../../../types/tool";
+import { Paper } from "../../common/base/Paper";
 
 const TOP_EXPENSIVE_TOOLS_LIMIT = 10;
 
@@ -10,7 +11,7 @@ export const TopExpensiveTools = ({ tools }: { tools: Tool[] }) => {
     .slice(0, TOP_EXPENSIVE_TOOLS_LIMIT);
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
+    <Paper>
       <h3 className="text-md font-semibold">Top Expensive Tools</h3>
       <ul>
         {topExpensiveTools.map((tool) => (
@@ -19,6 +20,6 @@ export const TopExpensiveTools = ({ tools }: { tools: Tool[] }) => {
           </li>
         ))}
       </ul>
-    </div>
+    </Paper>
   );
 };

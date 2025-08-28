@@ -1,5 +1,6 @@
 import type { Tool } from "../../../types/tool";
 import type { User } from "../../../types/user";
+import { Paper } from "../../common/base/Paper";
 
 export const UserAdoptionRates = ({
   tools,
@@ -20,7 +21,7 @@ export const UserAdoptionRates = ({
   });
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
+    <Paper>
       <h3 className="text-md font-semibold">User Adoption Rates</h3>
       <ul>
         {userAdoptionRates.map((rate) => (
@@ -29,6 +30,6 @@ export const UserAdoptionRates = ({
           </li>
         ))}
       </ul>
-    </div>
+    </Paper>
   );
 };

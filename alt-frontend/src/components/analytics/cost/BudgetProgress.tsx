@@ -1,4 +1,5 @@
 import type { Analytics } from "../../../types/analytics/analytics";
+import { Paper } from "../../common/base/Paper";
 
 export const BudgetProgress = ({ analytics }: { analytics: Analytics }) => {
   console.log("analytics", analytics);
@@ -9,12 +10,12 @@ export const BudgetProgress = ({ analytics }: { analytics: Analytics }) => {
     ((currentMonthTotal - previousMonthTotal) / previousMonthTotal) * 100;
 
   return (
-    <div className="p-4 bg-white rounded-lg shadow-md">
+    <Paper>
       <h3 className="text-md font-semibold">Budget Progress</h3>
       <p>
         €{currentMonthTotal} / €{budgetLimit}
       </p>
       <p>{budgetProgress.toFixed(2)}%</p>
-    </div>
+    </Paper>
   );
 };
