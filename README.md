@@ -1,8 +1,8 @@
 ### **🚀 Quick Start**
-
-_Installation et lancement en une commande_
-`npm install`
-`npm run dev`
+ Linux MaxOS :
+`cd alt-frontend && npm install && npm run dev`  
+Windows :
+`cd alt-frontend & npm install & npm run dev`
 
 ### **🏗️ Architecture**
 
