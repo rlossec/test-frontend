@@ -39,10 +39,25 @@ export const useTools = () => {
     }
   }, []);
 
+  const leastUsedTools = tools.sort(
+    (a, b) => a.active_users_count - b.active_users_count
+  );
+
+  const mostUsedTools = [...leastUsedTools].reverse();
+
   useEffect(() => {
     listTools();
     listRecentTools();
   }, [listTools, listRecentTools]);
 
-  return { tools, recentTools, loading, error, listTools, listRecentTools };
+  return {
+    tools,
+    recentTools,
+    leastUsedTools,
+    mostUsedTools,
+    loading,
+    error,
+    listTools,
+    listRecentTools,
+  };
 };
