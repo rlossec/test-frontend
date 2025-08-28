@@ -1,5 +1,9 @@
+import { PencilIcon } from "../../icons/actions/PencilIcon";
+import { TrashIcon } from "../../icons/actions/TrashIcon";
+import { EyeIcon } from "../../icons/media-player/EyeIcon";
 import type { Tool } from "../../types/tool";
-import { SortableTable } from "../common/SortableTable";
+
+import { DataTable, type Column } from "../common/data/DataTable";
 
 export const RecentTools = ({
   tools,
@@ -10,27 +14,51 @@ export const RecentTools = ({
   loading: boolean;
   error: string | null;
 }) => {
-  const columns = [
-    { id: "tool", Header: "Tool", accessor: "name" },
-    { id: "department", Header: "Department", accessor: "owner_department" },
-    { id: "user", Header: "User", accessor: "active_users_count" },
-    { id: "monthly_cost", Header: "Monthly Cost", accessor: "monthly_cost" },
-    { id: "status", Header: "Status", accessor: "status" },
+  const columns: Column<Tool>[] = [
+    { key: "name", header: "Tool", sortable: true },
+    { key: "owner_department", header: "Department", sortable: true },
+    { key: "active_users_count", header: "User", sortable: true },
+    { key: "monthly_cost", header: "Monthly Cost", sortable: true },
   ];
-
+  const toolActions = [
+    {
+      label: "View",
+      icon: <EyeIcon />,
+      onClick: (tool: Tool) => {
+        console.log("View tool infos", tool);
+      },
+    },
+    {
+      label: "Edit",
+      icon: <PencilIcon />,
+      onClick: (tool: Tool) => {
+        console.log("Edit tool", tool);
+      },
+    },
+    {
+      label: "Delete",
+      icon: <TrashIcon />,
+      onClick: (tool: Tool) => {
+        console.log("Delete tool", tool);
+      },
+    },
+  ];
   return (
     <div>
+      {loading && <div>Loading...</div>}
+      {error && <div>Error: {error}</div>}
       {/* Title */}
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-bold">Recent Tools</h2>
         <p> Last 30 days</p>
       </div>
       {/* Content : Table */}
-      <SortableTable
+      <DataTable
         columns={columns}
         data={tools}
-        loading={loading}
-        error={error}
+        keyExtractor={(tool) => tool.id}
+        actions={toolActions}
+        pagination={{ pageSize: 8 }}
       />
     </div>
   );
